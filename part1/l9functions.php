@@ -80,4 +80,61 @@ defaultfun1();           //60
 defaultfun1(30,50);      //90
 defaultfun1(20,20,60);   //100
 
+
+// Return 
+
+function myreturn($num1){
+    $cal = $num1+10;
+    return $cal;
+}
+
+echo myreturn(50);   //60
+
+function returnfun1($num1){
+    return $cal = $num1+10;
+}
+
+echo returnfun1(100);      //110
+
+
+function returnfun2($num1,$num2,$num3){
+    $cal = $num1+$num2+$num3;
+    return $cal;
+}
+
+echo returnfun2(10,20,30);   //60
+
+function returnfun3($num1=10, $num2=20, $num3=30)
+{
+    $cal = $num1 + $num2 + $num3;
+    return $cal;
+}
+
+echo returnfun3(50);   //100
+echo returnfun3();     //60
+
+// => Dynamic Function Call
+
+$dyn1 = myreturn(100);
+echo $dyn1;   //60
+
+$dyn2 = returnfun3();
+echo $dyn2;
+
+$dyn3 = "returnfun1";   // Dynamic Function Call
+echo $dyn3;   //returnfun1
+
+echo $dyn3();  //error
+echo $dyn3(100);    //110
+
+$myfun = "aungaung";
+echo $myfun;     //aungaung
+
+if(function_exists($myfun)){
+    echo "Yes, your variable value is already in some kind of function";
+}else{
+    echo "No";
+}
+
+
 ?>
