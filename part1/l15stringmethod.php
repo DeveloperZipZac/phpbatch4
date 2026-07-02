@@ -115,6 +115,115 @@ echo trim($subtitle, "try");            //Welcome to My Coun
 echo trim($subtitle, "My");            //Welcome to My Country (can't trim inside, can trim left and right)
 
 
+// => ltrim() Function 
+// => ltrim(string,characters) Function 
+
+$sayhi = "/Mingalarpar/";
+echo ltrim($sayhi,"/");         //      Mingalarpar/
+
+
+// => rtrim() Function 
+// => rtrim(string,characters) Function 
+
+$sayhi = "/Mingalarpar/";
+echo rtrim($sayhi, "/");         //     /Mingalarpar
+
+
+// => str_repeat() Function 
+// => str_repeat(string,count) Function 
+
+echo str_repeat("A Kyal Gyi",3);        //A Kyal GyiA Kyal GyiA Kyal Gyi
+
+
+// => strcmp(string1,string2) Function (case-sensitive)
+// 0 = if the two strings are equal 
+// <0 = if string1 is less than string2 
+// >0 = if string1 is greater than string2
+
+echo strcmp("I Love My Job","I Love My Job");       //0
+echo strcmp("I Love My Job", "I Love");             //7
+echo strcmp("I Love", "I Love My Job");             //-7
+
+
+// => explode(separator,string,limit) Function 
+
+$words = "Welcome to My Country";
+echo "<pre>".print_r(explode(" ",$words),true)."</pre>";         //[0]=>Welcome [1]=>to [2]=>My [3]=>Country
+echo "<pre>".print_r(explode(" ", $words,0),true)."</pre>";         //[0]=>Welcome
+echo "<pre>".print_r(explode(" ", $words, 1),true)."</pre>";         //[0]=>Welcome to My Country
+echo "<pre>".print_r(explode(" ", $words, 2),true)."</pre>";         //[0]=>Welcome [1]=>to My Country
+echo "<pre>".print_r(explode(" ", $words, 3),true)."</pre>";         //[0]=>Welcome [1]=>to [2]=>My Country
+
+
+
+// => implode(separator,array) Function 
+
+$words = ["Welcome","to","My","City"];
+echo implode(" ",$words);               // Welcome to My City
+echo implode("-", $words);               // Welcome-to-My-City
+
+
+// :note implode and join are same 
+
+
+// => join(separator,array) Function 
+
+$words = ["Welcome","to","My","Village"];
+echo join(" ",$words);                     //Welcome to My Village
+echo join("_",$words);                     //Welcome_to_My_Village
+
+
+
+// => number_format(number) Function 
+// => number_format(number,decimals) Function 
+
+echo number_format("1000000");              //10,000,000
+echo number_format("1000000",2);            //10,000,000.00]
+
+
+// => stripslahses(number) Function 
+$str = 'he\'s my mother';
+echo $str;                                  //he's my mother
+
+$str = 'he\'s my mother';
+echo $str;                                  //he's my mother
+
+$str = "he\'s my father";
+echo $str;                                  //he\'s my father
+echo stripslashes($str);                    //he's my father
+
+
+// => basename(path) Function 
+// => basename(path,suffix) Function 
+
+$path = "./assets/img/cover.jpg";
+echo $path;                                 //./assets/img/cover.jpg
+echo basename($path);                       //cover.jpg
+echo basename($path,".jpg");                //cover
+
+
+// => pathinfo(path) Function 
+// => pathinfo(path,flags) Function 
+
+// PATHINFO_DIRNAME
+// PATHINFO_BASENAME
+// PATHINFO_FILENAME
+// PATHINFO_EXTENSION
+
+$filepath = "./assets/img/user/cover.jpg";
+echo "<pre>".print_r(pathinfo($filepath),true)."</pre>";                //[dirname]=>./assets/img/user  [basename]=>cover.jpg [extension]=>jpg [filename]=>cover
+
+echo pathinfo($filepath)["dirname"];            //./assets/img/user
+echo pathinfo($filepath)["filename"];            //cover
+
+echo pathinfo($filepath,PATHINFO_DIRNAME);          //./assets/img/user
+echo pathinfo($filepath, PATHINFO_BASENAME);          //cover.jpg
+echo pathinfo($filepath, PATHINFO_FILENAME);          //cover
+echo pathinfo($filepath, PATHINFO_EXTENSION);          //jpg
+
+
+
+
 
 
 ?>
