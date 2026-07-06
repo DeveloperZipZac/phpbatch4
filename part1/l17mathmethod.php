@@ -114,7 +114,7 @@ echo number_format(1500,3);         //1,500.000
 echo number_format(1250000,3);      //1,250,000.000
 echo number_format(1250000, 3,".",",");      //1,250,000.000
 echo number_format(1250000, 3, ",", ".");      //1.250.000,000
-echo number_format(1250000, 0, ".", "-");      //1-250-000
+echo number_format(1250000, 0, ".", "-");      //1-250-000.000
 
 
 
