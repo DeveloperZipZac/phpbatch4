@@ -19,6 +19,12 @@ $vehicles = ["toyota","ford","audi","mazda","suzuki","ford","mazda","bmw"];
 echo count($vehicles);              //8
 
 
+// => sizeof(array) Function 
+
+$colors = ["red", "green", "blue", "yellow", "pink"];
+echo sizeof($colors);
+
+
 // => array_count_values(array) Function  (case-sensitive)
 
 $cars = ["toyota", "ford", "audi", "mazda"];
@@ -275,6 +281,18 @@ function calfun($total,$val){
 
 echo array_reduce($nums,"calfun",0);        //60
 
+
+// => array_sum(array) Function 
+$nums = [10,20,30,40,50];
+echo array_sum($nums);                      //150
+
+$nums = [10, 20, 30, "40", -50];
+echo array_sum($nums);                      //50
+
+$nums = ["a"=>10.2, "b"=>20.3, "c"=>30.3];
+echo array_sum($nums);                      //60.8
+
+
 // => array_search(value,array) Function 
 
 $myarrs = ["a","b","c","d","e"];
@@ -289,6 +307,42 @@ echo array_search("green", $myarrs);             //b (index key)(case sensitive)
 $colors = ["red","green","blue"];
 array_pop($colors);
 echo "<pre>" . print_r($colors, true) . "</pre>";       //([0]=>red [1]=>green)
+
+
+// => array_shift() Function
+$colors = ["red", "green", "blue"];
+array_shift($colors);
+echo "<pre>" . print_r($colors, true) . "</pre>";       //([0]=>green [1]=>blue)
+
+$colors = ["a" => "red", "b" => "green", "c" => "blue", "d"=>"violet"];
+array_shift($colors);
+echo "<pre>" . print_r($colors, true) . "</pre>";   
+// ( [0]=>green [1]=>blue [2]=>violet )
+
+
+// => unset(array[index]) Function and array_values(array)
+// (index number will skip when using only unset)
+// (using with array_values() will arrange the index)
+
+$colors = ["red","green","blue"];
+
+// unset($colors[1]);
+// echo "<pre>" . print_r($colors, true) . "</pre>";
+//([0]=>red [2]=>blue)
+
+unset($colors[1]);
+echo "<pre>" . print_r(array_values($colors), true) . "</pre>";
+//([0]=>red [1]=>blue)
+
+$colors = ["a" => "red", "b" => "green", "c" => "blue", "d"=>"violet", "e"=>"pink"];
+echo "<pre>" . print_r(array_values($colors), true) . "</pre>";
+//([0]=>red [1]=>green [2]=>blue [3]=>violet [4]=>pink)
+// associative array will change to index array when using array_values
+
+$colors = ["a" => "red", "b" => "green", "c" => "blue", "d" => "violet", "e" => "pink"];
+unset($colors["c"]);
+echo "<pre>" . print_r(array_values($colors), true) . "</pre>";
+//([0]=>red [1]=>green [2]=>violet [3]=>pink)
 
 
 // => array_unshift(array,value1,value2,value3,...) Function 
@@ -346,5 +400,166 @@ echo "<pre>" . print_r(array_slice($candycolors, 2, 5, true), true) . "</pre>";
 
 echo "<pre>" . print_r(array_slice($candycolors, 2, 5, false), true) . "</pre>";
 // ( [0] => blue [1] => yellow [2] => pink ) 
+
+
+// => array_splice(array,index) Function 
+// => array_splice(array,index,length) 
+// => array_splice(array,index,length,array) 
+
+$shirtcolors = ["red","green","blue","yellow","pink"];
+
+echo "<pre>" . print_r(array_splice($shirtcolors, 0), true) . "</pre>";
+// ( [1]=>red [2]=>green [3]=>blue [4]=>yellow [5]=>pink )
+
+echo "<pre>" . print_r(array_splice($shirtcolors, 2), true) . "</pre>";
+// ( [0]=>blue [1]=>yellow [2]=>pink )
+
+echo "<pre>" . print_r(array_splice($shirtcolors, 0, 2), true) . "</pre>";
+// ( [1]=>red [2]=>green )
+
+echo "<pre>" . print_r(array_splice($shirtcolors, 2, 2), true) . "</pre>";
+// ( [0]=>blue [1]=>yellow )
+
+echo "<pre>" . print_r(array_splice($shirtcolors, 2, 5), true) . "</pre>";
+// ( [0]=>blue [1]=>yellow [2]=>pink )
+
+
+$males = ["aung aung","maung maung","kyaw kyaw","zaw zaw","naung naung"];
+$females = ["su su","yu yu","nu nu"];
+
+// array_splice($males, 0, 2, $females);
+// echo "<pre>".print_r($males,true)."</pre>";
+// ( [0]=>su su [1]=>yu yu [2]=>nu nu [3]=>kyaw kyaw [4]=>zaw zaw [5]=>naung naung )
+
+// array_splice($males, 0, 3, $females);
+// echo "<pre>".print_r($males,true)."</pre>";
+// ( [0]=>su su [1]=>yu yu [2]=>nu nu [3]=>zaw zaw [4]=>naung naung )
+
+// array_splice($males, 1, 3, $females);
+// echo "<pre>".print_r($males,true)."</pre>";
+// ( [0]=>aung aung [1]=>su su [2]=>yu yu [3]=>nu nu [4]=>naung naung )
+
+
+// =>array_unique() Function
+// Note :: show unique value but index number will be skip
+
+$num = [10,20,30,50,10,30,60,70,80,10];
+echo "<pre>".print_r(array_unique($num),true)."</pre>";
+// ( [0]=>10 [1]=>20 [2]=>30 [3]=>50 [6]=>60 [7]=>70 [8]=>80 )
+
+$colors = ["a"=>"red", "b"=>"green", "c"=>"blue", "d"=>"red", "e"=>"blue"];
+echo "<pre>" . print_r(array_unique($colors), true) . "</pre>";
+// ( [a]=>red [b]=>green [c]=>blue )
+
+
+// => array_walk(array,callbackfunction) Function 
+// => array_walk(array,callbackfunction,parameter) 
+
+$colors = ["a"=>"red","b"=>"green","c"=>"blue","d"=>"pink","e"=>"violet"];
+
+function myfunone($val,$key){
+    echo "Key is $key and Value is $val";
+}
+
+array_walk($colors,"myfunone");
+// Key is a and Value is red Key is b and Value is green ....
+
+function myfuntwo($val,$key,$p){
+    echo "Key is = $key and Value is = $val $p.";
+}
+
+array_walk($colors,"myfuntwo","colour");
+//Key is = a and Value is = red colour. Key is = b and Value is = green colour. ...
+
+
+function myfunthree($val){
+    $val = "orange";
+}
+
+array_walk($colors,"myfunthree");
+echo "<pre>".print_r($colors,true)."</pre>";
+// ( [a]=>red [b]=>green [c]=>blue [d]=>pink [e]=>violet )
+
+
+function myfunfour(&$val)
+{
+    $val = "orange";
+}
+
+array_walk($colors, "myfunthree");
+echo "<pre>" . print_r($colors, true) . "</pre>";
+// ( [a]=>orange [b]=>orange [c]=>orange [d]=>orange [e]=>orange )
+
+
+// => compact(var1,var2,var3,...) Function 
+
+$name = "Aung Aung";
+$age = 25;
+$city = "Yangon";
+
+$result = compact("name","age","city");
+echo "<pre>".print_r($result,true)."</pre>";
+//([name]=>Aung Aung [age]=>25 [city]=>Yangon)     
+
+
+// => range(start,end) Function 
+// => range(start,end,step)
+
+$num1 = range(0,5);
+echo "<pre>" . print_r($num1, true) . "</pre>";
+// ([0]=>0 [1]=>1 [2]=>2 [3]=>3 [4]=>4 [5]=>5)
+
+$num2 = range(0, 50, 10);
+echo "<pre>" . print_r($num2, true) . "</pre>";
+// ([0]=>0 [1]=>10 [2]=>20 [3]=>30 [4]=>40 [5]=>50)
+
+$char = range("a", "k");
+echo "<pre>" . print_r($char, true) . "</pre>";
+// ([0]=>a [1]=>b [2]=>c [3]=>d [4]=>e [5]=>f .....)
+
+$char2 = range("k", "g");
+echo "<pre>" . print_r($char2, true) . "</pre>";
+// ([0]=>k [1]=>j [2]=>c [3]=>i [4]=>h [5]=>k .....)
+// can reverse
+
+
+// => current(), pos(), next(), prev(), reset() Function 
+
+$students = ["aung aung","maung maung","zaw zaw","tun tun","kyaw kyaw"];
+echo current($students);            //aung aung         (current)
+echo pos($students);                //aung aung         (position)
+
+echo next($students);               //maung maung       (next)
+echo current($students);            //maung maung
+
+echo prev($students);               //aung aung         (previous)
+echo current($students);            //aung aung 
+
+echo end($students);                //kyaw kyaw         (end)
+echo current($students);            //kyaw kyaw         (last current is kyaw kyaw)
+
+echo reset($students);              //aung aung         (reset)
+
+
+// => serialize(), unserialize() Function 
+// use for sending frontend to backend with serial 
+
+$staffs = [
+    ["aung aung","maung maung","kyaw kyaw","tun tun","zaw zaw"],
+    ["su su","yu yu","nu nu","aye aye","hla hla"]
+];
+
+$serialdatas = serialize($staffs);
+echo "<pre>" . print_r($serialdatas, true) . "</pre>";      //can get like object
+var_dump($serialdatas);             //can get with string
+
+$unserialdatas = unserialize($serialdatas);
+echo "<pre>" . print_r($unserialdatas, true) . "</pre>";    //can get with array by unserializing
+
+
+
+
+
+
 
 ?>
